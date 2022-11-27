@@ -1,14 +1,6 @@
+from tshirtsCheckSize import checkSize
 
-def size(cms):
-    if cms < 38:
-        return 'S'
-    elif cms > 38 and cms < 42:
-        return 'M'
-    else:
-        return 'L'
-
-
-assert(size(37) == 'S')
-assert(size(40) == 'M')
-assert(size(43) == 'L')
-print("All is well (maybe!)\n")
+assert checkSize(37) == 'S', "FAILED : for size == 37. T-Shirt Size should be Small"
+assert checkSize(38) == 'M', "FAILED : for size == 38. T-Shirt Size should be Medium"
+assert checkSize(40) == 'M', "FAILED : for size == 40. T-Shirt Size should be Medium"
+assert checkSize(43) == 'L', "FAILED : for size == 43. T-Shirt Size should be Large"
