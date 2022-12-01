@@ -2,7 +2,7 @@ major_colors = ["White", "Red", "Black", "Yellow", "Violet"]
 minor_colors = ["Blue", "Orange", "Green", "Brown", "Slate"]
 
 def getColorCodeIndex(majorColor, minorColor):
-    return major_colors.index(majorColor) * 5 + minor_colors.index(minorColor)
+    return str(major_colors.index(majorColor) * 5 + minor_colors.index(minorColor)))
 
 def printColorCodeManual():
     for indexMajor, majorColor in enumerate(major_colors):
