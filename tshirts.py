@@ -6,3 +6,4 @@ assert checkSize(39) == 'M', "FAILED : for size == 40. T-Shirt Size should be Me
 assert checkSize(41) == 'M', "FAILED : for size == 40. T-Shirt Size should be Medium"
 assert checkSize(42) == 'L', "FAILED : for size == 43. T-Shirt Size should be Large"
 assert checkSize(43) == 'L', "FAILED : for size == 43. T-Shirt Size should be Large"
+print("All is well!!")

@@ -27,3 +27,4 @@ checkAlert(212)
 checkAlert(213.8) 
 print(f'{alertFailureCount} alerts send failed.')
 assert alertFailureCount > 0, f'alert fail count not incremented {alertFailureCount} times.'
+print("All is well!!")
