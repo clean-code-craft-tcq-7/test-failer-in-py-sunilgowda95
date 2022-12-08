@@ -1,25 +1,20 @@
-alert_failure_count = 0
+from checkAlertBreach import checkAlert
+from alerterSend import alerterSendNetwork
+from checkBreachInCelcius import checkThresholdInCelcius
+from farenheitToCelcius import getCelciusFromFarenheit
 
-def network_alert_stub(celcius):
-    print(f'ALERT: Temperature is {celcius} celcius')
-    # Return 200 for ok
-    # Return 500 for not-ok
-    # stub always succeeds and returns 200
-    return 200
-
-def alert_in_celcius(farenheit):
-    celcius = (farenheit - 32) * 5 / 9
-    returnCode = network_alert_stub(celcius)
-    if returnCode != 200:
-        # non-ok response is not an error! Issues happen in life!
-        # let us keep a count of failures to report
-        # However, this code doesn't count failures!
-        # Add a test below to catch this bug. Alter the stub above, if needed.
-        global alert_failure_count
-        alert_failure_count += 0
-
-
-alert_in_celcius(400.5)
-alert_in_celcius(303.6)
-print(f'{alert_failure_count} alerts failed.')
-print('All is well (maybe!)')
+# for convertion of farenheit to celcius
+assert getCelciusFromFarenheit(210.2) == 99, f'convertion from farenheit to celcius failed'
+# for threshold breach
+assert checkThresholdInCelcius(getCelciusFromFarenheit(210.2)) == False, "99c/210.2f is below defined threshold value" 
+assert checkThresholdInCelcius(getCelciusFromFarenheit(212)) == False, "100c/212f is equal to defined threshold value"
+assert checkThresholdInCelcius(getCelciusFromFarenheit(213.8)) == True, "101c/213.8f is above threshold"
+# for alertFailureCount
+checkAlert(210.2) 
+checkAlert(212) 
+checkAlert(213.8) 
+from checkAlertBreach import alertFailureCount
+print(f'{alertFailureCount} alerts send failed.')
+assert alertFailureCount == 1, f'alert fail count not incremented {alertFailureCount} times.'
+assert alerterSendNetwork(213.8) != 500, f'unexpected failure code from network stub. Expected 500 for non-ok'
+print("All is well!!")
